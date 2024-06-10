@@ -1,0 +1,2 @@
+1. Their average energy is 0.65906. Their average valence is 0.484443. Their average danceability is 0.71646.
+2. It may not be reperesentative of the listener because the listening time should be taken into consideration.

@@ -1,0 +1,14 @@
+# COVID-19 TRACKER PHILIPPINES
+#### Video Demo: https://youtu.be/fiRHOPed3Pg
+#### Description:
+
+
+CS-50 is a 10-week course which is an introduction to programming. It teaches the fundamentals of programming by introducing programming languages such as C, Python, SQL, etc. For the final project, I focused on web design and development (Weeks 8 to 9) as it was the one that interested me most. And so I created COVID-19 TRACKER PHILIPPINES.
+The past few years have been difficult for the whole world because of the COVID-19 pandemic. While other countries are considered recovered already, the Philippines is still recovering from the losses due to it. This website aims to track the country's progress by using real-time data and graphs.
+
+COVID-19 TRACKER PHILIPPINES is a COVID-19 tracker, which was created using HTML, CSS, and JavaScript. The data is sourced from APIs online. The website features realtime COVID-19 data, which includes total deaths, confirmed cases, and tests conducted in the Philippines and worldwide. The website has a dark-mode feature, which switches the theme to a darker background for easier evening view. It also has show/hide chart buttons, which reveal tables that I created using Chart JS. As for the design, I made it to look modern and minimalist, so that it is aesthetically pleasing to look at.
+
+In making the project, I first drafted what the project would look like and contain. I then made the HTML and CSS first. For the design, it was fairly easy, as there was BOOTSTRAP to guide me through it all. A challenge I faced was making the design compatible for phones and tablets, as I did not put that into consideration when I started it. In the future, I will make sure that every element in my website should take into consideration how it will look like in mobile and in tablets. After making the design, I needed to find a way to connect the API to my website. I had some kind of a guide for this as the PSET on finance already did that. However, I needed more research on how APIs work and how to put the data on CHART JS. This took me a long time and a lot of trials and errors to figure out. After figuring that out, I made the dark mode feature, which I should have done while designing it. The code was already long at this point and so doing the dark mode feature was extra confusing. I learned to put more comments on my code and also make it as clean as possible, as I have the tendency to make a cluttered code when im tired. Lastly, I made sure that the tables look good on mobile and tablets.
+
+
+Overall, CS50 helped me understand the basics of coding. It was the key on helping me learn how to search for the codes I want to write. I am now more confident in writing code and continuing my studies, as I have a strong foundation already. COVID-19 TRACKER PHILIPPINES is my first project, and I aim to code something like it, but better, in the future.

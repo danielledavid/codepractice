@@ -1,0 +1,11 @@
+sort1 uses: Bubble Sort
+
+How do you know?: It performed the quickest in the sorted texts.
+
+sort2 uses: Merge Sort
+
+How do you know?: It performed the quickest in the unsorted texts.
+
+sort3 uses: Selection Sort
+
+How do you know?: Process of elimination
