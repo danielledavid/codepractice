@@ -32,5 +32,38 @@ def print_summary(transactions):
   balance = total_deposited + total_withdrawn
   print(balance)
 
-print_transactions(data)
-print_summary(data)
+def analyze_transactions(transactions):
+  transactions.sort()
+  largest_withdrawal = transactions[0]
+  largest_deposit = transactions[-1]
+  print(largest_withdrawal)
+  print(largest_deposit)
+  deposits = [transaction[0] for transaction in transactions if transaction[0] >= 0]
+  total_deposit = sum(deposits)
+  if len(deposits) == 0:
+    average_deposit = 0
+  else:
+    average_deposit = total_deposit / len(deposits)
+  print(average_deposit)
+
+  withdrawals = [transaction[0] for transaction in transactions if transaction[0] < 0]
+  total_withdrawals = sum(withdrawals)
+  if len(withdrawals) == 0:
+    average_withdrawal = 0
+  else:
+    average_withdrawal = total_withdrawals / len(withdrawals)
+  print(average_withdrawal)
+
+
+while True:
+  choice = input("Type: print, analyze, or stop")
+  if choice == "print":
+    print_summary(data)
+  elif choice == "analyze":
+    analyze_transactions(data)
+  elif choice == "stop":
+    break
+  else:
+    print("Invalid choice")
+
+
