@@ -15,7 +15,6 @@ class Solution:
             i = len(stop)
             if i >= len(s):
                 break
-            print(i)
             if i < len(s) - 1:
                 if dict[s[i]] < dict[s[i + 1]]:
                     sum1 = dict[s[i + 1]] - dict[s[i]]
@@ -30,6 +29,4 @@ class Solution:
             else:
                 list.append(dict[s[i]])
                 stop.append(1)
-        print(list)
-        print(sum(list))
         return sum(list)
