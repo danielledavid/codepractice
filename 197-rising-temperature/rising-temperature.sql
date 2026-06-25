@@ -1,18 +1,12 @@
--- Write your PostgreSQL query statement below
-With yesterday AS(
-    SELECT id, TO_CHAR((recordDate + INTERVAL '1 day'),'YYYY-MM-DD') AS yesterday_date, temperature AS yesterday_tempp
-    FROM Weather
-),
-yesterday_temperature AS(
-    SELECT Weather.id, yesterday_tempp AS yesterday_temp
-    FROM Weather
-    LEFT JOIN yesterday
-    ON yesterday.yesterday_date = TO_CHAR(Weather.recordDate,'YYYY-MM-DD')
+# Write your MySQL query statement below
+WITH yesterday_date AS(
+    SELECT id,
+    DATE_SUB(recordDate, INTERVAL 1 DAY) AS previous_day,
+    temperature
+    FROM Weather 
 )
-
-
-SELECT Weather.id
-FROM Weather
-LEFT JOIN yesterday_temperature
-ON Weather.id = yesterday_temperature.id
-WHERE temperature > yesterday_temp
+SELECT y.id
+FROM yesterday_date y
+LEFT JOIN Weather w
+ON y.previous_day = w.recordDate
+WHERE y.temperature > w.temperature
