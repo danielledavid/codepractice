@@ -1,11 +1,10 @@
 # Write your MySQL query statement below
-WITH managers as (
+WITH manager_salary AS(
     SELECT id, salary
     FROM Employee
 )
-SELECT name as Employee
+SELECT name AS Employee
 FROM Employee e
-LEFT JOIN managers 
-ON e.managerID = managers.id
-WHERE
-e.salary > managers.salary
+LEFT JOIN manager_salary m
+ON e.managerId = m.id
+WHERE e.salary > m.salary
