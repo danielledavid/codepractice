@@ -1,11 +1,11 @@
 # Write your MySQL query statement below
-WITH highest as(
-    SELECT *,
-    DENSE_RANK() OVER(PARTITION BY departmentId ORDER BY salary DESC) AS dr
-    FROM employee
+WITH RANKED AS(
+    SELECT e.id, e.name AS Employee, salary AS Salary, e.departmentId, d.name AS Department,
+    rank() OVER (PARTITION BY d.name ORDER BY salary DESC) AS RANKED_SALARY
+    FROM Employee e
+    LEFT JOIN Department d
+    ON e.departmentId = d.id
 )
-select d.name AS department, e.name AS Employee, salary AS salary
-FROM Department d
-LEFT JOIN highest e
-ON d.id = e.departmentId
-WHERE dr = 1
+SELECT Department, Employee, Salary
+FROM Ranked
+WHERE RANKED_SALARY = 1
