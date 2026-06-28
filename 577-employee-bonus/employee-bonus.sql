@@ -3,4 +3,4 @@ SELECT name, bonus
 FROM Employee e
 LEFT JOIN Bonus b
 ON e.empId = b.empId
-WHERE e.empId NOT IN (SELECT empId FROM bonus WHERE bonus >= 1000)
+WHERE bonus < 1000 OR bonus IS NULL
