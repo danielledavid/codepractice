@@ -1,8 +1,9 @@
-WITH ALL_FILTERED AS(
-SELECT customer_id,
-(SELECT COUNT(product_key) FROM PRODUCT) AS total
-FROM Customer
-GROUP BY customer_id
-HAVING COUNT(DISTINCT product_key) = total
+# Write your MySQL query statement below
+WITH COUNTED AS(
+    SELECT COUNT(product_key) as cnt
+    FROM Product
 )
-SELECT customer_id FROM all_filtered
+SELECT customer_id
+FROM Customer 
+GROUP BY customer_id
+HAVING COUNT(DISTINCT product_key) = (SELECT * FROM COUNTED)
