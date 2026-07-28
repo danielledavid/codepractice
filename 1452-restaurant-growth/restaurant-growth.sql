@@ -1,13 +1,21 @@
 # Write your MySQL query statement below
-SELECT
-visited_on, (
-    SELECT SUM(amount)
-    FROM Customer AS c2
-    WHERE c2.visited_on BETWEEN DATE_SUB(c1.visited_on, INTERVAL 6 DAY) AND c1.visited_on) AS amount, (
-    SELECT ROUND(SUM(amount)/7,2)
-    FROM Customer AS c2
-    WHERE c2.visited_on BETWEEN DATE_SUB(c1.visited_on, INTERVAL 6 DAY) AND c1.visited_on)
-    AS average_amount
-FROM Customer c1
-GROUP BY visited_on
-HAVING DATE_SUB(visited_on, INTERVAL 6 DAY) IN (select visited_on FROM Customer)
+WITH SUMMED AS(
+    SELECT *, SUM(amount) AS summed,
+    AVG(amount) AS averaged
+    FROM Customer
+    GROUP BY visited_on
+),
+LAGGED_DATE AS(
+    SELECT *,
+    LAG(visited_on, 6) OVER(ordeR by visited_on) AS LAGGED,
+    ROUND((SUM(summed) OVER (ORDER BY visited_on ROWS BETWEEN 6 PRECEDING AND CURRENT ROW)),2) 
+AS amt,
+ROUND(sum(summed) OVER (ORDER BY visited_on ROWS BETWEEN 6 PRECEDING AND CURRENT ROW) / 7,2)
+AS average_amount
+FROM SUMMED
+)
+
+SELECT 
+visited_on, amt AS amount, average_amount
+FROM LAGGED_DATE
+WHERE LAGGED IS NOT NULL
