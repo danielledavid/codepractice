@@ -1,0 +1,18 @@
+# Write your MySQL query statement below
+WITH LAGGED AS(
+    SELECT *,
+    LAG(id) OVER(ORDER BY id) AS LAGGED,
+    LEAD(id) OVER(ORDER BY id) AS LEADED
+    FROM Seat
+),
+FINAL AS(
+SELECT *,
+CASE WHEN id % 2 = 0 THEN LAGGED
+WHEN LEADED IS NULL THEN id
+ELSE LEADED
+END AS FINAL
+FROM LAGGED)
+SELECT f.id, s.student
+FROM FINAL f
+LEFT JOIN Seat s
+ON F.final = s.id
