@@ -1,0 +1,30 @@
+# Write your MySQL query statement below
+WITH FILTERED AS(
+    SELECT *
+    FROM Stadium
+    WHERE people >= 100
+),
+LEADED AS(
+    SELECT *,
+    LEAD(id) OVER (ORDER BY id) AS LEADED,
+    LEAD(id, 2) OVER (ORDER BY id) AS LEADED2
+    FROM FILTERED
+),
+IDS AS (
+SELECT id FROM LEADED
+WHERE LEADED - 1 = ID
+AND LEADED2 - 1 = LEADED
+UNION 
+SELECT LEADED FROM LEADED
+WHERE LEADED - 1 = ID
+AND LEADED2 - 1 = LEADED
+UNION
+SELECT LEADED2 FROM LEADED
+WHERE LEADED - 1 = ID
+AND LEADED2 - 1 = LEADED)
+
+SELECT i.id, visit_date, people
+FROM IDS i
+LEFT JOIN Stadium s 
+ON i.id = s.id
+ORDER BY visit_date
