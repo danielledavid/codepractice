@@ -9,7 +9,6 @@ WITH FIRST_POSITIVE AS(
 
 RANKED AS (
     SELECT *,
-    RANK() OVER(PARTITION BY c.patient_id ORDER BY test_date) AS RANKED,
     MIN(CASE WHEN result = "Positive" THEN test_date END)  AS positives,
     MIN(CASE WHEN result = "Negative" THEN test_date END)  AS negatives
     FROM covid_tests c
